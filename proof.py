@@ -53,6 +53,9 @@ def persist_observations(observations):
 
 
 def main():
+    print("CI_IDENTITY " + json.dumps({name: os.environ.get(name) for name in
+          ("GITHUB_REPOSITORY", "GITHUB_SHA", "GITHUB_RUN_ID", "GITHUB_RUN_ATTEMPT",
+           "RUNNER_OS", "RUNNER_ARCH")}, sort_keys=True), flush=True)
     for tool in ("git", "cmake", "ninja", "clang", "xcodebuild", "sw_vers"):
         if shutil.which(tool) is None:
             raise RuntimeError("Missing runner prerequisite: " + tool)

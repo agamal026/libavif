@@ -1,0 +1,18 @@
+name: OSS libavif Xcode proof
+on:
+  push:
+    branches: [research/xcode-2780-proof-20261015]
+
+permissions:
+  contents: read
+
+jobs:
+  native-proof:
+    runs-on: macos-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Observe pinned builds and linked consumers
+        run: python3 proof.py
